@@ -23,31 +23,34 @@ module.exports = function(app) {
     response.json(friends);
   });
 
-  // API POST Requests
-  // Below code handles when a user submits a form and thus submits data to the server.
-  // In each of the below cases, when a user submits form data (a JSON object)
-  // ...the JSON is pushed to the appropriate JavaScript array
-  // (ex. User fills out a reservation request... this data is then sent to the server...
-  // Then the server saves the data to the tableData array)
-  // ---------------------------------------------------------------------------
+  app.post("/api/friends", function(request, response) {
+    let bestMatch = {
+      name: "",
+      photo: "",
+      friendMeter: 1000
+    };
+    console.log(request.body);
 
-  app.post("/api/tables", function(request, response) {
-    // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-    // It will do this by sending out the value "true" have a table
-    // req.body is available since we're using the body parsing middleware
-    if (tableData.length < 5) {
-      tableData.push(req.body);
-      response.json(true);
+    let userInput = request.body;
+    let userScore = userInput.score;
+    console.log(userScore);
+
+    let difference = o;
+    for (var i = 0; i < friends.length; i++) {
+      console.log(friends[i]);
+      difference = 0;
+      for (var x = 0; j < friends[i].score[x]; x++){
+        difference += Math.abs(parseInt(userScore[x]) - parseInt(friends[i].score));
+        if (difference <= bestMatch.friendMeter){
+          bestMatch.name = friends[i].name;
+          bestMatch.photo = friends[i].photo;
+          bestMatch.friendMeter = difference;
+        }
+      }
     }
-    else {
-      waitListData.push(request.body);
-      response.json(false);
-    }
+    friends.push(userInput);
+    response.json(bestMatch);
   });
-
-  // ---------------------------------------------------------------------------
-  // I added this below code so you could clear out the table while working with the functionality.
-  // Don"t worry about it!
 
   app.post("/api/clear", function(request, res) {
     // Empty out the arrays of data
