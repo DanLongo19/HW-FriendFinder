@@ -35,7 +35,7 @@ module.exports = function(app) {
     let userScore = userInput.score;
     console.log(userScore);
 
-    let difference = o;
+    let difference = 0;
     for (var i = 0; i < friends.length; i++) {
       console.log(friends[i]);
       difference = 0;
