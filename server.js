@@ -7,13 +7,13 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("survey", function(request,response){
-  response.sendFile(path.join(__dirname + "/survey"))
-});
+// app.get("/survey", function(request,response){
+//   response.sendFile(path.join(__dirname + "/survey.html"))
+// });
 
-app.use(function(request, response){
-  response.sendFile(path.join(__dirname + "/home"))
-})
+// app.use(function(request, response){
+//   response.sendFile(path.join(__dirname + "/home.html"))
+// })
 
 
 // ================================================================================
@@ -22,8 +22,8 @@ app.use(function(request, response){
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
 
-require("/Users/dan_longo/Desktop/Bootcamp/HW-FriendFinder/HW-FriendFinder/routing/apiRoutes.js")(app);
-require("/Users/dan_longo/Desktop/Bootcamp/HW-FriendFinder/HW-FriendFinder/routing/htmlRoutes.js")(app);
+require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
 
 
 

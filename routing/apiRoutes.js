@@ -4,7 +4,7 @@
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 // ===============================================================================
 
-var friends = require("HW-FriendFinder/app/data/friends.js");
+var friends = require("../app/data/friends.js");
 
 
 
